@@ -2,9 +2,17 @@
 
 ## The situation
 
+*Beanie Field Notes, issue 3: "What did we know, and when?" A short, practical newsletter from the people who keep the coffee ordering alive.*
+
+Hello again. This week's note starts with a quiet disaster, and ends with a stack you build yourself.
+
 Beanie runs as five containers on one host, and the only monitoring is a colleague who refreshes the page now and then. Last night the host ran out of memory, the kernel killed a container, and nobody knew until the morning shift complained. The postmortem has a hard question: *what did we know, and when?* The honest answer is nothing, because nothing was measuring.
 
 There are three layers to measure, and they answer different questions. **The machine** (is the host healthy? CPU, memory, disk) is what **node-exporter** reports. **The containers** (who is using the memory?) is **cAdvisor**. **The application** (are customers being served? how fast?) is what Beanie itself exposes at `/metrics`. You will collect all three in **Prometheus**, show them in **Grafana** on a dashboard that is *code*, write the rules that notice trouble, and then cause the trouble yourself.
+
+(A confession, in the spirit of every good postmortem: the colleague who "refreshes the page now and then" is a lovely person, and this is not a criticism of them. It is a criticism of a system that depends on a lovely person refreshing a page.)
+
+Below is the full walk. Each Part ends with something you can see on a screen, because the best way to understand a monitoring stack is to break it and watch the screen change.
 
 > **Your mission**
 > - Start Beanie and look at the raw `/metrics` it exposes
