@@ -1,0 +1,4 @@
+# TODO: rule groups.
+#   record: beanie:gateway_error_ratio:rate5m  = share of gateway requests with status 5xx over 5m
+#   alert BeanieTargetDown: up{job="beanie"} == 0 for 30s, severity page-worthy label  severity: critical,  annotation summary
+#   alert BeanieHighErrorRate: the recorded ratio above 0.05 for 1m, label severity: critical, annotation summary

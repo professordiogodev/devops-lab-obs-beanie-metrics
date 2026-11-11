@@ -1,0 +1,13 @@
+# TODO: the monitoring stack, to be started together with compose.beanie.yaml:
+#     docker compose -f compose.beanie.yaml -f compose.monitoring.yaml up -d
+#
+# Four services (use these exact image tags):
+#   prometheus     prom/prometheus:v2.55.1       port 9090:9090, config ./prometheus/ mounted read-only at /etc/prometheus,
+#                                                 a named volume for /prometheus, flags --config.file=/etc/prometheus/prometheus.yml
+#                                                 --storage.tsdb.retention.time=6h --web.enable-lifecycle
+#   node-exporter  prom/node-exporter:v1.8.2     the HOST's metrics: mount / read-only at /host (ro, rslave) and pass --path.rootfs=/host; pid: host
+#   cadvisor       gcr.io/cadvisor/cadvisor:v0.49.1   the CONTAINERS' metrics: mounts / (ro) as /rootfs, /var/run, /sys (ro), /var/lib/docker (ro), /dev/disk (ro); privileged is the usual shortcut
+#   grafana        grafana/grafana:11.3.1        port 3000:3000, ./grafana/provisioning and ./grafana/dashboards mounted read-only
+#                                                 (into /etc/grafana/provisioning and /var/lib/grafana/dashboards),
+#                                                 env GF_SECURITY_ADMIN_PASSWORD=beanie-lab, GF_USERS_ALLOW_SIGN_UP=false
+# Named volumes for prometheus and grafana data. Restart policy unless-stopped everywhere.

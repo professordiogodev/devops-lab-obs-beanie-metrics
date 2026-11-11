@@ -1,0 +1,2 @@
+# TODO: provision a Prometheus data source named "Prometheus", default, proxy access, url http://prometheus:9090.
+# Docs: https://grafana.com/docs/grafana/latest/administration/provisioning/#data-sources

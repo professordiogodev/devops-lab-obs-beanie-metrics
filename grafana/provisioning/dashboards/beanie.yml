@@ -1,0 +1,2 @@
+# TODO: a dashboard provider that loads every JSON file in /var/lib/grafana/dashboards (folder "Beanie").
+# Docs: https://grafana.com/docs/grafana/latest/administration/provisioning/#dashboards

@@ -1,0 +1,9 @@
+# TODO: Prometheus configuration.
+#   global: scrape_interval 15s, evaluation_interval 15s
+#   rule_files: /etc/prometheus/rules.yml
+#   scrape_configs (one job each):
+#     prometheus      prometheus:9090
+#     node            node-exporter:9100
+#     cadvisor        cadvisor:8080
+#     beanie          gateway:8000, menu:8001, orders:8002, payments:8003, notifications:8004   (path /metrics)
+#                     honor_labels: true   <- Beanie puts a `service` label on its own metrics; do not let Prometheus overwrite it
